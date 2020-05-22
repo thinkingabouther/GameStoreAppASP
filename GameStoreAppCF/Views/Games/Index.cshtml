@@ -1,0 +1,137 @@
+﻿@model IEnumerable<GameStoreAppCF.Models.Game>
+
+@{
+    ViewBag.Title = "Склад";
+}
+
+<h2>Склад</h2>
+
+<p>
+    @Html.ActionLink("Добавить игру", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Название
+        </th>
+        <th>
+            Описание
+        </th>
+        <th>
+            Сложность
+        </th>
+        <th>
+            Мин. длительность
+        </th>
+        <th>
+            Макс. длительность
+        </th>
+        <th>
+            Мин. игроков
+        </th>
+        <th>
+            Макс. игроков
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            На складе
+        </th>
+        <th>
+            Жанр
+        </th>
+        <th>
+            Тип
+        </th>
+        <th>
+            Издатель
+        </th>
+        <th>
+            Автор
+        </th>
+        <th>
+            Заказы
+        </th>
+        <th />
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Difficulty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Min_Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Max_Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Min_Players)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Max_Players)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td title="@Html.DisplayFor(modelItem => item.Genre.Description)">
+                @Html.DisplayFor(modelItem => item.Genre.Name)
+            </td>
+            <td title="@Html.DisplayFor(modelItem => item.Type.Description)">
+                @Html.DisplayFor(modelItem => item.Type.Name)
+            </td>
+            <td title="Адрес: @Html.DisplayFor(modelItem => item.Manufacturer.Adress)">
+                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+            </td>
+            <td title="Адрес: @Html.DisplayFor(modelItem => item.Author.Adress)">
+                @Html.DisplayFor(modelItem => item.Author.Name)
+            </td>
+            <td>
+                <table class="table-for-orders">
+                    <tr class="table-for-orders">
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Количество
+                        </th>
+                    </tr>
+                    @foreach (var order in item.Order)
+                    {
+                        <tr class="table-for-orders">
+                            <td>
+                                @order.ID
+                            </td>
+                            <td>
+                                @order.Game.Count(x => x.ID == item.ID)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            <td>
+                <ul class="action-list">
+                    <li>
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    }
+
+</table>
