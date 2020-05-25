@@ -16,6 +16,10 @@
     white-space: normal;
 }
 
+body{
+    padding-top: 56px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -60,4 +64,9 @@ table.table th{
 
 ul.action-list li {
     margin: 3px;
+}
+.db-nav-btn {
+    margin-top: 2px;
+    background-color: #343a40;
+    color: rgba(255, 255, 255, 0.5);
 }
