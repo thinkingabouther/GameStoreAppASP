@@ -18,9 +18,11 @@ namespace GameStoreAppCF.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "Жанр")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Описание")]
         public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

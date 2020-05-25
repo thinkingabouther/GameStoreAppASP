@@ -17,8 +17,8 @@ namespace GameStoreAppCF
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DBInitializer.RemoveAllEntites();
-            DBInitializer.InitializeDB();
+            //DBInitializer.RemoveAllEntites();
+            //DBInitializer.InitializeDB();
         }
     }
 }

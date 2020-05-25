@@ -5,6 +5,7 @@ namespace GameStoreAppCF.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Drawing;
 
     [Table("Game")]
     public partial class Game
@@ -19,24 +20,36 @@ namespace GameStoreAppCF.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name="Название")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Описаниие")]
         public string Description { get; set; }
 
+        [Display(Name = "Сложность")]
         public int Difficulty { get; set; }
 
+        [Display(Name = "Мин. длительность")]
         public int Min_Duration { get; set; }
 
+        [Display(Name = "Макс. длительность")]
         public int Max_Duration { get; set; }
 
+        [Display(Name = "Мин. игроков")]
         public int Min_Players { get; set; }
 
+        [Display(Name = "Макс. игроков")]
         public int Max_Players { get; set; }
 
+        [Display(Name = "Цена")]
         public double Price { get; set; }
-
+       
+        [Display(Name = "На складе")]
         public int Quantity { get; set; }
+
+        [Display(Name = "Изображение")]
+        public byte[] Image { get; set; }
 
         public int? Author_ID { get; set; }
 

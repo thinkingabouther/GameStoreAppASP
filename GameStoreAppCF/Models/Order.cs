@@ -17,6 +17,8 @@ namespace GameStoreAppCF.Models
 
         public int ID { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата заказа")]
         public DateTime Date { get; set; }
 
         public int? ClientID { get; set; }

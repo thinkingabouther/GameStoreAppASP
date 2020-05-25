@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<GameStoreAppCF.Models.Type>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Список типов";
 }
 
-<h2>Index</h2>
+<h2>Список типов</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить тип", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,8 +29,14 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <ul class="action-list">
+                <li>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ID })
+                </li>
+                <li>
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+                </li>
+            </ul>
         </td>
     </tr>
 }

@@ -36,7 +36,7 @@ namespace GameStoreAppCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,Difficulty,Min_Duration,Max_Duration,Min_Players,Max_Players,Price,Quantity,Author_ID,Type_ID,Genre_ID,Manufacturer_ID")] Game game)
+        public ActionResult Create([Bind(Include = "ID,Name,Description,Difficulty,Min_Duration,Max_Duration,Min_Players,Max_Players,Price,Quantity,Image,Author_ID,Type_ID,Genre_ID,Manufacturer_ID")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace GameStoreAppCF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,Difficulty,Min_Duration,Max_Duration,Min_Players,Max_Players,Price,Quantity,Author_ID,Type_ID,Genre_ID,Manufacturer_ID")] Game game)
+        public ActionResult Edit([Bind(Include = "ID,Name,Description,Difficulty,Min_Duration,Max_Duration,Min_Players,Max_Players,Price,Quantity,Image,Author_ID,Type_ID,Genre_ID,Manufacturer_ID")] Game game)
         {
             if (ModelState.IsValid)
             {

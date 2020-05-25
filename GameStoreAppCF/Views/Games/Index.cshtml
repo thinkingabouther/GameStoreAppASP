@@ -12,126 +12,131 @@
 <table class="table">
     <tr>
         <th>
-            Название
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            Описание
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            Сложность
+            @Html.DisplayNameFor(model => model.Difficulty)
         </th>
         <th>
-            Мин. длительность
+            @Html.DisplayNameFor(model => model.Min_Duration)
         </th>
         <th>
-            Макс. длительность
+            @Html.DisplayNameFor(model => model.Max_Duration)
         </th>
         <th>
-            Мин. игроков
+            @Html.DisplayNameFor(model => model.Min_Players)
         </th>
         <th>
-            Макс. игроков
+            @Html.DisplayNameFor(model => model.Max_Players)
         </th>
         <th>
-            Цена
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            На складе
+            @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>
-            Жанр
+            @Html.DisplayNameFor(model => model.Author.Name)
         </th>
         <th>
-            Тип
+            @Html.DisplayNameFor(model => model.Genre.Name)
         </th>
         <th>
-            Издатель
+            @Html.DisplayNameFor(model => model.Manufacturer.Name)
         </th>
         <th>
-            Автор
+            @Html.DisplayNameFor(model => model.Type.Name)
         </th>
         <th>
             Заказы
         </th>
-        <th />
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Difficulty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Min_Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Max_Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Min_Players)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Max_Players)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td title="@Html.DisplayFor(modelItem => item.Genre.Description)">
-                @Html.DisplayFor(modelItem => item.Genre.Name)
-            </td>
-            <td title="@Html.DisplayFor(modelItem => item.Type.Description)">
-                @Html.DisplayFor(modelItem => item.Type.Name)
-            </td>
-            <td title="Адрес: @Html.DisplayFor(modelItem => item.Manufacturer.Adress)">
-                @Html.DisplayFor(modelItem => item.Manufacturer.Name)
-            </td>
-            <td title="Адрес: @Html.DisplayFor(modelItem => item.Author.Adress)">
-                @Html.DisplayFor(modelItem => item.Author.Name)
-            </td>
-            <td>
-                <table class="table-for-orders">
-                    <tr class="table-for-orders">
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Количество
-                        </th>
-                    </tr>
-                    @foreach (var order in item.Order)
-                    {
-                        <tr class="table-for-orders">
-                            <td>
-                                @order.ID
-                            </td>
-                            <td>
-                                @order.Game.Count(x => x.ID == item.ID)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </td>
-            <td>
-                <ul class="action-list">
-                    <li>
-                        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Difficulty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Min_Duration)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Max_Duration)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Min_Players)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Max_Players)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Quantity)
+    </td>
+    <td title="@Html.DisplayFor(modelItem => item.Genre.Description)">
+        @Html.DisplayFor(modelItem => item.Genre.Name)
+    </td>
+    <td title="@Html.DisplayFor(modelItem => item.Type.Description)">
+        @Html.DisplayFor(modelItem => item.Type.Name)
+    </td>
+    <td title="Адрес: @Html.DisplayFor(modelItem => item.Manufacturer.Adress)">
+        @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+    </td>
+    <td title="Адрес: @Html.DisplayFor(modelItem => item.Author.Adress)">
+        @Html.DisplayFor(modelItem => item.Author.Name)
+    </td>
+    <td>
+        <table class="table-for-orders">
+            <tr class="table-for-orders">
+                <th>
+                    ID
+                </th>
+                <th>
+                    Количество
+                </th>
+            </tr>
+            @foreach (var order in item.Order)
+            {
+                <tr class="table-for-orders">
+                    <td>
+                        @order.ID
+                    </td>
+                    <td>
+                        @order.Game.Count(x => x.ID == item.ID)
+                    </td>
+                </tr>
+            }
+        </table>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Image)
+    </td>
+    <td>
+        <ul class="action-list">
+            <li>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID })
+            </li>
+            <li>
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </li>
+        </ul>
+    </td>
+</tr>
+}
 
 </table>

@@ -19,8 +19,6 @@ namespace GameStoreAppCF.Controllers
         {
             return View(db.Author.ToList());
         }
-
-
         // GET: Authors/Create
         public ActionResult Create()
         {
