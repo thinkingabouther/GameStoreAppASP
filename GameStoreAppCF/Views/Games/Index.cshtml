@@ -125,10 +125,20 @@
         </table>
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Image)
+        @if (item.Image != null)
+        {
+            <span>Есть</span>
+        }
+        else
+        {
+            <span>Нет</span>
+        }
     </td>
     <td>
         <ul class="action-list">
+            <li>
+                @Html.ActionLink("Изображение", "Create", "ImageForGameViewModels", new { id = item.ID }, null)
+            </li>
             <li>
                 @Html.ActionLink("Редактировать", "Edit", new { id = item.ID })
             </li>

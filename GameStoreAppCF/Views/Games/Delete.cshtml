@@ -120,7 +120,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            @if (Model.Image != null) {
+            <span>Есть</span>
+            }
+            else{
+            <span>Нет</span>
+            }
         </dd>
 
     </dl>
@@ -130,7 +135,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
             @Html.ActionLink("Обратно к списку", "Index")
         </div>
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -60,6 +61,7 @@ namespace GameStoreAppCF.Models
                 {
                     Date = DateTime.Now
                 };
+                var imageConverter = new ImageConverter();
                 var game1 = new Game
                 {
                     Description = "Дикий запад!",
@@ -74,8 +76,9 @@ namespace GameStoreAppCF.Models
                     Min_Players = 2,
                     Max_Players = 10,
                     Quantity = 5,
-                    Price = 990.99
-                };
+                    Price = 990.99,
+                    Image = (byte[])imageConverter.ConvertTo(GameStoreAppCF.Properties.resources.Bang, typeof(byte[]))
+            };
                 var game2 = new Game
                 {
                     Description = "Война гномов!",
@@ -90,7 +93,8 @@ namespace GameStoreAppCF.Models
                     Min_Players = 3,
                     Max_Players = 10,
                     Quantity = 10,
-                    Price = 1990.99
+                    Price = 1990.99,
+                    Image = (byte[])imageConverter.ConvertTo(GameStoreAppCF.Properties.resources.Munchkin, typeof(byte[]))
                 };
                 order1.Client = clientIvan;
                 order1.Game.Add(game1);

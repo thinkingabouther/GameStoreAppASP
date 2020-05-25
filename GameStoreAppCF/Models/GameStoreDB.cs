@@ -4,6 +4,7 @@ namespace GameStoreAppCF.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using GameStoreAppCF;
 
     public partial class GameStoreDB : DbContext
     {
@@ -20,6 +21,7 @@ namespace GameStoreAppCF.Models
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Review> Review { get; set; }
         public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<ImageForGameViewModel> ImageForGame { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
