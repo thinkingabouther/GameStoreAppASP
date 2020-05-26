@@ -70,3 +70,27 @@ ul.action-list li {
     background-color: #343a40;
     color: rgba(255, 255, 255, 0.5);
 }
+.players-param {
+    float: left; 
+}
+.duration-param{
+    float: left;
+}
+
+.manufacturer-param{
+    float: right;
+}
+
+.show-on-hover {
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
+
+.game-container:hover .show-on-hover {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+}
+
+.label-partial-view{
+    margin-left: 10px;
+}

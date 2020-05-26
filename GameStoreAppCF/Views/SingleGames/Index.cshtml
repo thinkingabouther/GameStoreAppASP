@@ -1,0 +1,92 @@
+﻿@model GameStoreAppCF.Models.Game
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 card" style="text-align:center">
+            @{
+                string base64String = Convert.ToBase64String(Model.Image);
+            }
+            <div class="mt-4">
+                <img src="@String.Format("data:image/png; base64,{0}", base64String)" style="width: 300px; height: auto" />
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">@Model.Name</h3>
+                <h4>@Model.Price₽</h4>
+                <p class="card-text">@Model.Description</p>
+                <div class="container">
+                    <div class="row">
+                        <Label title="@Model.Genre.Description"
+                               style="font-size:20px;">@Model.Genre.Name</Label>
+                    </div>
+                    <div class="row">
+                        <Label title="@Model.Type.Description"
+                               style="font-size:20px;">@Model.Type.Name</Label>
+                        </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6" style="text-align: center">
+                            <img src="@Url.Content("~/Content/images/people.png")" width="20" height="20" />
+                            <Label style="font-size:15px;">@Model.Min_Players-@Model.Max_Players</Label>
+                        </div>
+                        <div class="col-md-6" style="text-align: center">
+                            <img src="@Url.Content("~/Content/images/clocks.png")" width="20" height="20" />
+                            <Label style="font-size:15px;">@Model.Min_Duration-@Model.Max_Duration</Label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6" style="text-align: center">
+                            <img src="@Url.Content("~/Content/images/manufacturer.png")" width="20" height="20" />
+                            <Label title="Адрес: @Model.Manufacturer.Adress"
+                                   style="font-size:15px;">@Model.Manufacturer.Name</Label>
+                            </div>
+                            <div class="col-md-6" style="text-align: center">
+                                <img src="@Url.Content("~/Content/images/author.png")" width="20" height="20" />
+                                <Label title="Адрес: @Model.Author.Adress"
+                                       style="font-size:15px;">@Model.Author.Name</Label>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+        <div class="col-md-6 card">
+            <div class="card-header">
+                Отзывы
+            </div>
+            <div class="card-body">
+                @if (Model.Review.Count == 0)
+                {
+                    <p>Отзывов нет :(</p>
+                    <small class="text-muted">Оставьте самый первый отзыв!</small>
+                    <hr>
+                }
+                else
+                {
+                    foreach (var review in Model.Review)
+                    {
+                        <p>@review.Review_Content</p>
+                        <small class="text-muted">Оставлен пользователем @review.Author_Name</small><br/>
+                        <small class="text-muted">@review.Date.ToString("dddd, dd MMMM yyyy")</small>
+                        <hr>
+                    }
+                }
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Оставить отзыв
+                </button>
+                <div class="dropdown-menu">
+                    <div style="width: 400px">
+                        @Html.Partial("~/Views/CreateReview/CreateReview.cshtml", new GameStoreAppCF.Models.Review { Game_ID = Model.ID })
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>  

@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -132,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\CreateReviewController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Controllers\ManufacturersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="Controllers\SingleGamesController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,6 +178,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\author.png" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -195,6 +199,13 @@
     <Content Include="Content\Site.css" />
     <None Include="Resources\Bang.jpg" />
     <None Include="Resources\Munchkin.jpg" />
+    <None Include="Content\images\manufacturer.png" />
+    <None Include="Content\images\clocks.png" />
+    <None Include="Content\images\people.png" />
+    <None Include="Resources\author.png" />
+    <Content Include="Resources\clocks.png" />
+    <Content Include="Resources\manufacturer.png" />
+    <Content Include="Resources\people.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css.map" />
@@ -267,6 +278,8 @@
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\ImageForGameViewModels\Create.cshtml" />
+    <Content Include="Views\SingleGames\Index.cshtml" />
+    <Content Include="Views\CreateReview\CreateReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,6 +307,7 @@
     <EmbeddedResource Include="Properties\resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

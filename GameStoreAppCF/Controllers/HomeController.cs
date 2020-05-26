@@ -26,6 +26,20 @@ namespace GameStoreAppCF.Controllers
             return View();
         }
 
+        public ActionResult OpenGameDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Game.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View("~\\Views\\SingleGames\\Index.cshtml", game); 
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
