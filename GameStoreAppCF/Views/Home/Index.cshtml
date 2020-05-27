@@ -1,20 +1,88 @@
-﻿@model IEnumerable<GameStoreAppCF.Models.Game>
+﻿@model GameStoreAppCF.ViewModels.FilterViewModel
 
 @{
     ViewBag.Title = "Главная страница";
 }
+
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
 <div class="container">
 
     <div class="row">
 
         <div class="col-lg-3">
-            <h1 class="my-4">Фильтр</h1>
-            <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
-            </div>
+            @using (Ajax.BeginForm("ApplyFilter", new AjaxOptions { UpdateTargetId = "results", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+            {
+                <h1 class="my-4">Фильтр</h1>
+                <div class="list-group">
+                    <div class="form-horizontal">
+                        <hr />
 
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            Жанры
+                            <div class="col-md-10">
+                                @Html.DropDownList("Genre", ViewBag.Genres as SelectList, "Не выбрано")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            Типы
+                            <div class="col-md-10">
+                                @Html.DropDownList("Type", ViewBag.Types as SelectList, "Не выбрано")
+                            </div>
+                        </div>
+                        <br />
+                        <p>
+                            <label for="price-amount">Стоимость:</label>
+                            <input type="text" name="price" class="price-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+
+                        <div class="price-range"></div>
+                        <hr />
+
+                        <p>
+                            <label for="">Сложность:</label>
+                            <input type="text" name="diffiulty" class="difficulty-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+
+                        <div class="difficulty-range"></div>
+                        <hr />
+
+                        <p>
+                            <label for="">Количество игроков:</label>
+                            <input type="text" name="players" class="players-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+
+                        <div class="players-range"></div>
+                        <hr />
+
+                        <p>
+                            <label for="">Длительность:</label>
+                            <input type="text" name="duration" class="duration-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+
+                        <div class="duration-range"></div>
+                        <hr />
+
+                        <p>
+                            <label for="">Название:</label>
+                            <input type="text" name="startswith" class="form-control">
+                        </p>
+                        <hr />
+
+                        <div class="form-group" style="margin-top: 10px">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Применить" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
         <!-- /.col-lg-3 -->
 
@@ -46,42 +114,76 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
-            <div class="row">
-                @foreach (var game in Model) {
-                <div class="col-lg-4 col-md-6 mb-4 game-container">
-                    <div class="card h-100">
-                        @{
-                            string base64String = Convert.ToBase64String(game.Image);
-                        <img src="@String.Format("data:image/png;base64,{0}", base64String)" style="width: 100%; height: auto" />
-                        }
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                @Html.ActionLink(game.Name, "OpenGameDetails", new { id = game.ID})
-                            </h4>
-                            <h5>@game.Price₽</h5>
-                            <p class="card-text">@game.Description</p>
-                        </div>
-                        <div class="show-on-hover">
-                            <div class="card-footer">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-6" style="text-align: center">
-                                            <img src="@Url.Content("~/Content/images/people.png")" width="20" height="20" />
-                                            <Label style="font-size:15px;">@game.Min_Players-@game.Max_Players</Label>
-                                        </div>
-                                        <div class="col-md-6" style="text-align: center">
-                                            <img src="@Url.Content("~/Content/images/clocks.png")" width="20" height="20" />
-                                            <Label style="font-size:15px;">@game.Min_Duration-@game.Max_Duration</Label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    }
-                </div>
+            <div id="results">
+                @Html.Action("Index", "GamesCatalog")
             </div>
         </div>
     </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+            $(function () {
+                $(".price-range").slider({
+                    range: true,
+                    min: @Model.MinPrice,
+                    max: @Model.MaxPrice,
+                    values: [@Model.MinPrice, @Model.MaxPrice],
+                    slide: function (event, ui) {
+                        $(".price-amount").val(ui.values[0] + "₽ - " + ui.values[1] + "₽");
+                    }
+                });
+                $(".price-amount").val($(".price-range").slider("values", 0) +
+                    "₽ - " + $(".price-range").slider("values", 1) + "₽");
+            });
+    </script>
+
+    <script type="text/javascript">
+            $(function () {
+                $(".difficulty-range").slider({
+                    range: true,
+                    min: @Model.MinDifficulty,
+                    max: @Model.MaxDifficulty,
+                    values: [@Model.MinDifficulty, @Model.MaxDifficulty],
+                    slide: function (event, ui) {
+                        $(".difficulty-amount").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+                $(".difficulty-amount").val($(".difficulty-range").slider("values", 0) +
+                    " - " + $(".difficulty-range").slider("values", 1));
+            });
+    </script>
+
+    <script type="text/javascript">
+            $(function () {
+                $(".duration-range").slider({
+                    range: true,
+                    min: @Model.MinDuration,
+                    max: @Model.MaxDuration,
+                    values: [@Model.MinDuration, @Model.MaxDuration],
+                    slide: function (event, ui) {
+                        $(".duration-amount").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+                $(".duration-amount").val($(".duration-range").slider("values", 0) +
+                    " - " + $(".duration-range").slider("values", 1)) + "минут";
+            });
+    </script>
+
+    <script type="text/javascript">
+            $(function () {
+                $(".players-range").slider({
+                    range: true,
+                    min: @Model.MinPlayers,
+                    max: @Model.MaxPlayers,
+                    values: [@Model.MinPlayers, @Model.MaxPlayers],
+                    slide: function (event, ui) {
+                        $(".players-amount").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+                $(".players-amount").val($(".players-range").slider("values", 0) +
+                    " - " + $(".players-range").slider("values", 1));
+            });
+    </script>

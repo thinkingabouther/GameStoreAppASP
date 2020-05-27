@@ -134,6 +134,8 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\CreateReviewController.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
+    <Compile Include="Controllers\GamesCatalogController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -158,10 +160,12 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DBInitializer.cs" />
+    <Compile Include="Models\FilterQueries.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameStoreDB.cs" />
     <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\ImageForGameViewModel.cs" />
+    <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\ImageForGameViewModel.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Review.cs" />
@@ -179,6 +183,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\author.png" />
+    <Content Include="Content\images\max-arrow.png" />
+    <Content Include="Content\images\min-arrow.png" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -227,6 +233,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -280,6 +288,9 @@
     <Content Include="Views\ImageForGameViewModels\Create.cshtml" />
     <Content Include="Views\SingleGames\Index.cshtml" />
     <Content Include="Views\CreateReview\CreateReview.cshtml" />
+    <Content Include="Views\Filter\Index.cshtml" />
+    <Content Include="Views\GamesCatalog\Index.cshtml" />
+    <Content Include="Views\Home\ApplyFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

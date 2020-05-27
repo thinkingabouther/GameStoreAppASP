@@ -1,0 +1,138 @@
+﻿@model GameStoreAppCF.ViewModels.FilterViewModel
+
+@using (Ajax.BeginForm("ApplyFilter", "Home", new AjaxOptions { UpdateTargetId = "results" }))
+{
+    <head>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        Жанры
+        <div class="col-md-10">
+            @Html.DropDownList("Genre", ViewBag.Genres as SelectList, "Не выбрано")
+        </div>
+    </div>
+    <div class="form-group">
+        Типы
+        <div class="col-md-10">
+            @Html.DropDownList("Type", ViewBag.Types as SelectList, "Не выбрано")
+        </div>
+    </div>
+    <br />
+    <p>
+        <label for="price-amount">Стоимость:</label>
+        <input type="text" name="price" class="price-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div class="price-range"></div>
+    <hr />
+
+    <p>
+        <label for="">Сложность:</label>
+        <input type="text" name="diffiulty" class="difficulty-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div class="difficulty-range"></div>
+    <hr />
+
+    <p>
+        <label for="">Количество игроков:</label>
+        <input type="text" name="players" class="players-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div class="players-range"></div>
+    <hr />
+
+    <p>
+        <label for="">Длительность:</label>
+        <input type="text" name="duration" class="duration-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div class="duration-range"></div>
+    <hr />
+
+    <p>
+        <label for="">Название:</label>
+        <input type="text" name="startswith" class="form-control">
+    </p>
+    <hr />
+
+    <div class="form-group" style="margin-top: 10px">
+        <div class="col-md-offset-2 col-md-10">
+            @Ajax.ActionLink("Применить1", "ApplyFilter", "GamesCatalog", new AjaxOptions { UpdateTargetId = "results" })
+            <input type="submit" value="Применить" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".price-range").slider({
+                range: true,
+                min: @Model.MinPrice,
+                max: @Model.MaxPrice,
+                values: [@Model.MinPrice, @Model.MaxPrice],
+                slide: function (event, ui) {
+                    $(".price-amount").val(ui.values[0] + "₽ - " + ui.values[1] + "₽");
+                }
+            });
+            $(".price-amount").val($(".price-range").slider("values", 0) +
+                "₽ - " + $(".price-range").slider("values", 1) + "₽");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".difficulty-range").slider({
+                range: true,
+                min: @Model.MinDifficulty,
+                max: @Model.MaxDifficulty,
+                values: [@Model.MinDifficulty, @Model.MaxDifficulty],
+                slide: function (event, ui) {
+                    $(".difficulty-amount").val(ui.values[0] + " - " + ui.values[1]);
+                }
+            });
+            $(".difficulty-amount").val($(".difficulty-range").slider("values", 0) +
+                " - " + $(".difficulty-range").slider("values", 1));
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".duration-range").slider({
+                range: true,
+                min: @Model.MinDuration,
+                max: @Model.MaxDuration,
+                values: [@Model.MinDuration, @Model.MaxDuration],
+                slide: function (event, ui) {
+                    $(".duration-amount").val(ui.values[0] + " - " + ui.values[1]);
+                }
+            });
+            $(".duration-amount").val($(".duration-range").slider("values", 0) +
+                " - " + $(".duration-range").slider("values", 1)) + "минут";
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".players-range").slider({
+                range: true,
+                min: @Model.MinPlayers,
+                max: @Model.MaxPlayers,
+                values: [@Model.MinPlayers, @Model.MaxPlayers],
+                slide: function (event, ui) {
+                    $(".players-amount").val(ui.values[0] + " - " + ui.values[1]);
+                }
+            });
+            $(".players-amount").val($(".players-range").slider("values", 0) +
+                " - " + $(".players-range").slider("values", 1));
+        });
+    </script>
+}
