@@ -1,0 +1,39 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <h4>Авторизация</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @{ if ((GameStoreAppCF.Models.LoginVerifier.Role)TempData["Role"] == GameStoreAppCF.Models.LoginVerifier.Role.Admin)
+                        {
+                            <label>Введите пароль для пользователя "Администатор"</label>
+                        }
+                        else
+                        {
+                            <label>Введите пароль для пользователя "Владелец"</label>
+                        }
+                        TempData.Keep("Role");
+                    }
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="password" name="password" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Войти" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -32,7 +32,6 @@ namespace GameStoreAppCF.Controllers
 
         public ActionResult ApplyFilter(FormCollection formcollection)
         {
-            var temp = formcollection["Type"];
             var type = formcollection["Type"] == String.Empty ? null : db.Type.Find(int.Parse(formcollection["Type"])).Name;
             var genre = formcollection["Genre"] == String.Empty ? null : db.Genre.Find(int.Parse(formcollection["Genre"])).Name;
             var price = formcollection["price"];
