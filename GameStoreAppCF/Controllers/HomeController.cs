@@ -30,7 +30,7 @@ namespace GameStoreAppCF.Controllers
             return View(filter);
         }
 
-        public ActionResult ApplyFilter(FormCollection formcollection)
+        public ActionResult GamesCatalog(FormCollection formcollection)
         {
             var type = formcollection["Type"] == String.Empty ? null : db.Type.Find(int.Parse(formcollection["Type"])).Name;
             var genre = formcollection["Genre"] == String.Empty ? null : db.Genre.Find(int.Parse(formcollection["Genre"])).Name;
@@ -47,7 +47,7 @@ namespace GameStoreAppCF.Controllers
             var minDuration = int.Parse(duration.Substring(0, duration.IndexOf(' ')));
             var maxDuration = int.Parse(duration.Substring(duration.LastIndexOf(' ') + 1));
             var startswith = formcollection["startswith"];
-            var games = FilterQueries.GetGamesParamsWithFilter(startswith, minPrice, maxPrice, minDuration, maxDuration, minDifficulty, maxDifficulty, minPlayers, maxPlayers, genre, type);
+            var games = FilterQueries.GetGamesParamsWithFilter(db, startswith, minPrice, maxPrice, minDuration, maxDuration, minDifficulty, maxDifficulty, minPlayers, maxPlayers, genre, type);
             return PartialView(games);
         }
     }

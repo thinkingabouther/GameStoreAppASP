@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Отчёт";
+}
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<h2>Отчёт по продажам</h2>
+<hr />
+<h4>Даты для формирования отчёта</h4>
+@using (Ajax.BeginForm("Report", new AjaxOptions { UpdateTargetId = "report", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="container">
+        <div class="date-picker-container mt-3" width="300px">
+            <div class="row">
+                <div class="col-md-1">
+                    <label>От </label>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" name="dateFrom" required>
+                </div>
+                <div class="col-md-1">
+                    <label>до </label>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" name="dateTo" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10 mt-3">
+                    <input type="submit" value="Составить" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<hr />
+<div id="report">
+    @Html.Partial("Report")
+</div>

@@ -55,15 +55,13 @@ namespace GameStoreAppCF.Models
             }
         }
 
-        public static List<Game> GetGamesParamsWithFilter(string startsWith,
+        public static List<Game> GetGamesParamsWithFilter(GameStoreDB db, string startsWith,
                                                                 double minPrice, double maxPrice,
                                                                 int minDuration, int maxDuration,
                                                                 int minDifficulty, int maxDifficulty,
                                                                 int minPlayers, int maxPlayers,
                                                                 string genre, string type)
         {
-            using (var db = new GameStoreDB())
-            {
                 var selectedGames = from game in db.Game
                                     where
                                     maxPrice >= game.Price &&
@@ -94,7 +92,7 @@ namespace GameStoreAppCF.Models
                                     select game;
                 }
                 return selectedGames.ToList<Game>();
-            }
+            
         }
     }
 }

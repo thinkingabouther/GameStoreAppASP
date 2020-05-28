@@ -161,6 +161,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManufacturersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\SingleGamesController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
@@ -177,12 +178,14 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DBInitializer.cs" />
     <Compile Include="Models\FilterQueries.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameStoreDB.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\ReportManager.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\ImageForGameViewModel.cs" />
     <Compile Include="Models\Manufacturer.cs" />
@@ -196,6 +199,7 @@
       <DependentUpon>resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginVerifier.cs" />
+    <Compile Include="ViewModels\GamesToReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -229,6 +233,7 @@
     <None Include="Content\images\clocks.png" />
     <None Include="Content\images\people.png" />
     <None Include="Resources\author.png" />
+    <None Include="Resources\cart.png" />
     <Content Include="Resources\clocks.png" />
     <Content Include="Resources\manufacturer.png" />
     <Content Include="Resources\people.png" />
@@ -309,9 +314,10 @@
     <Content Include="Views\SingleGames\Index.cshtml" />
     <Content Include="Views\CreateReview\CreateReview.cshtml" />
     <Content Include="Views\Filter\Index.cshtml" />
-    <Content Include="Views\GamesCatalog\Index.cshtml" />
-    <Content Include="Views\Home\ApplyFilter.cshtml" />
+    <Content Include="Views\Home\GamesCatalog.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
