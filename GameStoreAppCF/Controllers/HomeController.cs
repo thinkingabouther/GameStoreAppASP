@@ -30,6 +30,12 @@ namespace GameStoreAppCF.Controllers
             return View(filter);
         }
 
+        public ActionResult ShowGames()
+        {
+            var game = db.Game;
+            return PartialView("~\\Views\\Home\\GamesCatalog.cshtml", game.ToList());
+        }
+
         public ActionResult GamesCatalog(FormCollection formcollection)
         {
             var type = formcollection["Type"] == String.Empty ? null : db.Type.Find(int.Parse(formcollection["Type"])).Name;
@@ -49,6 +55,32 @@ namespace GameStoreAppCF.Controllers
             var startswith = formcollection["startswith"];
             var games = FilterQueries.GetGamesParamsWithFilter(db, startswith, minPrice, maxPrice, minDuration, maxDuration, minDifficulty, maxDifficulty, minPlayers, maxPlayers, genre, type);
             return PartialView(games);
+        }
+
+        public ActionResult GameBought()
+        {
+            int id = int.Parse(Request.Params
+                        .Cast<string>()
+                        .Where(p => p.StartsWith("button-"))
+                        .Select(p => p.Substring("button-".Length))
+                        .First());
+            Cart cart = (Cart)Session["Cart"] != null? (Cart)Session["Cart"] : new Cart();
+            cart.Add(db.Game.Find(id).Name);
+            Session["Cart"] = cart;
+            return RedirectToAction("Index");
+        }
+        public ActionResult OpenGameDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Game.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View("~\\Views\\SingleGames\\Index.cshtml", game);
         }
     }
 }

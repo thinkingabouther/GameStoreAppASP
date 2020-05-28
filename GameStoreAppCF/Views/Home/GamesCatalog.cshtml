@@ -6,56 +6,59 @@
 }
 else
 {
-    <div class="row">
-        @foreach (var game in Model)
-        {
-            <div class="col-lg-4 col-md-6 mb-4 game-container">
-                <div class="card h-100">
-                    @{
-                        if (game.Image != null)
-                        {
-                            string base64String = Convert.ToBase64String(game.Image);
-                            <img src="@String.Format("data:image/png;base64,{0}", base64String)" style="width: 100%; height: auto" />
+    using (Html.BeginForm("GameBought", "Home"))
+    {
+       <div class="row">
+            @foreach (var game in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4 game-container">
+                    <div class="card h-100">
+                        @{
+                            if (game.Image != null)
+                            {
+                                string base64String = Convert.ToBase64String(game.Image);
+                                <img src="@String.Format("data:image/png;base64,{0}", base64String)" style="width: 100%; height: auto" />
+                            }
                         }
-                    }
-                <div class="card-body" style="position: relative">
-                    <h4 class="card-title">
-                        @Html.ActionLink(game.Name, "OpenGameDetails", new { id = game.ID })
-                    </h4>
-                    <div>
-                        <button class="btn btn-primary" id="@game.ID">
-                            <img src="~/Resources/cart.png" width="25" style="margin-top: -4px"/>
-                            @game.Price ₽
-                        </button>
-                    </div>
-                    <hr />
-                    <p class="card-text">@game.Description</p>
-                    <hr />
-                    <p title="@game.Genre.Description"
-                       class="card-text">@game.Genre.Name</p>
-                    <p title="@game.Type.Description"
-                       class="card-text">@game.Type.Name</p>
-                    <hr />
-                </div>
-                    <div class="show-on-hover">
-                        <div class="card-footer">
-                            <div class="container">
-                                <div class="row">
-                                    <div title="Количество игроков" class="col-md-6" style="text-align: center">
-                                        <img src="@Url.Content("~/Content/images/people.png")" width="20" height="20" />
-                                        <Label style="font-size:15px;">@game.Min_Players-@game.Max_Players</Label>
-                                    </div>
-                                    <div title="Длительность игры" class="col-md-6" style="text-align: center">
-                                        <img src="@Url.Content("~/Content/images/clocks.png")" width="20" height="20" />
-                                        <Label style="font-size:15px;">@game.Min_Duration-@game.Max_Duration</Label>
+                        <div class="card-body" style="position: relative">
+                            <h4 class="card-title">
+                                @Html.ActionLink(game.Name, "OpenGameDetails", new { id = game.ID })
+                            </h4>
+                            <div>
+                                <button class="btn btn-primary" name="button-@game.ID">
+                                    <img src="~/Resources/cart.png" width="25" style="margin-top: -4px" />
+                                    @game.Price ₽
+                                </button>
+                            </div>
+                            <hr />
+                            <p class="card-text">@game.Description</p>
+                            <hr />
+                            <p title="@game.Genre.Description"
+                               class="card-text">@game.Genre.Name</p>
+                            <p title="@game.Type.Description"
+                               class="card-text">@game.Type.Name</p>
+                            <hr />
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="card-footer">
+                                <div class="container">
+                                    <div class="row">
+                                        <div title="Количество игроков" class="col-md-6" style="text-align: center">
+                                            <img src="@Url.Content("~/Content/images/people.png")" width="20" height="20" />
+                                            <Label style="font-size:15px;">@game.Min_Players-@game.Max_Players</Label>
+                                        </div>
+                                        <div title="Длительность игры" class="col-md-6" style="text-align: center">
+                                            <img src="@Url.Content("~/Content/images/clocks.png")" width="20" height="20" />
+                                            <Label style="font-size:15px;">@game.Min_Duration-@game.Max_Duration</Label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        }
-    </div>
-}
+                            }
+                            
+        </div>
+                                }
+                            }           

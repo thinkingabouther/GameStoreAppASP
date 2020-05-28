@@ -1,0 +1,62 @@
+﻿@model List<GameStoreAppCF.ViewModels.GamesToCartViewModel>
+
+@{
+    ViewBag.Title = "Подтверждение заказа";
+}
+
+
+@using (Html.BeginForm("AddOrderToDB", "OrderConfirmation"))
+{
+<div class="container mt-4">
+    <div class="row">
+    <div class="col-md-6">
+        <h4 class="mb-3">Данные покупателя</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <label>Ваше имя:</label>
+                <input type="text" name="Name" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Ваша электронная почта:</label>
+                <input type="text" name="Email" required />
+            </div>
+        </div>
+        <button class="btn btn-primary mt-4" type="submit">Оформить заказ</button>
+    </div>
+        <div class="col-md-6 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Корзина</span>
+                @{ 
+                    var count = 0;
+                    foreach(var game in Model)
+                    {
+                        count += game.Quantity;
+                    }
+                <span class="badge badge-secondary badge-pill">@count</span>
+                }
+            </h4>
+            <ul class="list-group mb-3">
+                @{
+                    foreach (var game in Model)
+                    {
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">@game.Name</h6>
+                            <small class="text-muted">В корзине: @game.Quantity</small>
+                        </div>
+                        <span class="text-muted">@game.Total ₽</span>
+                    </li>
+                        }
+                    }
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Стоимость заказа (Руб.)</span>
+                    <strong>@ViewBag.Total ₽</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+}

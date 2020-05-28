@@ -5,16 +5,22 @@ using System.Web;
 
 namespace GameStoreAppCF.Models
 {
+    [Serializable]
     public class Cart
     {
-        Dictionary<Game, int> games { get; set; } = new Dictionary<Game, int>();
+        public Dictionary<string, int> Games { get; set; } = new Dictionary<string, int>();
 
-        public void Add(Game game)
+        public void Add(string game)
         {
-            if (games.ContainsKey(game))
-                games[game]++;
+            if (Games.ContainsKey(game))
+                Games[game]++;
             else
-                games[game] = 1;
+                Games[game] = 1;
+        }
+
+        public void Delete(string game)
+        {
+            Games.Remove(game);
         }
     }
 

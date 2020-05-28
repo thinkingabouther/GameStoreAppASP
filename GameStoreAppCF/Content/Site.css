@@ -133,3 +133,12 @@ ul.action-list li {
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
+
+.cart-table th{
+    border-top: 0px;
+}
+
+.delete-btn-from-cart{
+    position: absolute;
+    right: 2px;
+}

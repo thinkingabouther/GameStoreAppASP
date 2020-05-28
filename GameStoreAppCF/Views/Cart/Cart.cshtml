@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GameStoreAppCF.ViewModels.GamesToCartViewModel>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Ваша корзина</h4>
+            <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        </div>
+        <div class="modal-body">
+            @if (Model.Count() == 0)
+            {
+                <h4>Ваша корзина пуста. Попробуйте приобрести товары, и вы сможете оформить заказ.</h4>
+            }
+            else
+            {
+                <ul class="list-group mb-3">
+                    @{
+                        foreach (var game in Model)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h6 class="my-0">@game.Name</h6>
+                                            <small class="text-muted">В корзине: @game.Quantity</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="text-muted">@game.Total ₽   </span>
+                                            @Html.ActionLink("x", "Delete", new { name = game.Name }, new {@class="btn btn-danger btn-sm delete-btn-from-cart" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Стоимость заказа (Руб.)</span>
+                        <strong>@ViewBag.Total ₽</strong>
+                    </li>
+                </ul>
+                     using (Html.BeginForm("Index", "OrderConfirmation", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Оформить заказ" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
