@@ -26,7 +26,7 @@ namespace GameStoreAppCF.Models
             },
             { Role.Owner, new List<string>()
             {
-
+                "Reports"
             }
             }
         };

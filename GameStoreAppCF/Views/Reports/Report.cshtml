@@ -46,5 +46,15 @@ else
             }
         </table>
     }
+
+    TempData.Keep("dateTo");
+    TempData.Keep("dateFrom");
+    TempData.Keep("model");
+    string base64StringChart = Convert.ToBase64String(ViewBag.Chart);
+    <img src="@String.Format("data:image/png;base64,{0}", base64StringChart)"/>
+    <hr />
+    @Html.ActionLink("Экспортировать отчёт", "ExportReport", null, new { @class = "btn btn-primary" })
 }
+
+
 

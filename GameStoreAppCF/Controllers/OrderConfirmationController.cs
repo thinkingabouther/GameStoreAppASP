@@ -34,6 +34,20 @@ namespace GameStoreAppCF.Controllers
             order.Client = client;
             db.Order.Add(order);
             db.SaveChanges();
+            string directoryPath = "~/ReportTemplates/";
+            string fileName = $"Receipt_Order{order.ID}.docx";
+            string templateFile = "ReceiptTemplate.docx";
+            string receiptFileName = Server.MapPath(directoryPath + fileName);
+            string templateFileName = Server.MapPath(directoryPath + templateFile);
+            ReceiptManager.CreateReceipt(order, templateFileName, receiptFileName);
+            Response.ContentType = "Application/msword";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.TransmitFile(receiptFileName);
+            Response.End();
+            string virtualPath = Request.MapPath(directoryPath + fileName);
+            System.IO.File.Delete(virtualPath) ;
+            Session["Cart"] = null;
+
             return RedirectToAction("Index", "Home");
         }
 

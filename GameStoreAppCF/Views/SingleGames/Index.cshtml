@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = Model.Name;
 }
-
+@{ 
+    System.Drawing.ImageConverter converter;
+    byte[] image;
+    string base64StringCart;
+}
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6 card" style="text-align:center">
@@ -19,7 +23,15 @@
                 }
             <div class="card-body">
                 <h3 class="card-title">@Model.Name</h3>
-                <h4>@Model.Price ₽</h4>
+                <a href="@Url.Action("GameBoughtModal", "GameBought", new { gameID = Model.ID})" class="btn btn-primary game-bought">
+                    @{
+                        converter = new System.Drawing.ImageConverter();
+                        image = (byte[])converter.ConvertTo(Resources.resources.cart, typeof(byte[]));
+                        base64StringCart = Convert.ToBase64String(image);
+                        <img src="@String.Format("data:image/png;base64,{0}", base64StringCart)" width="25" style="margin-top: -4px" />
+                    }
+                    @Model.Price ₽
+                </a>
                 <p class="card-text">@Model.Description</p>
                 <div class="container">
                     <div class="row">
@@ -35,7 +47,7 @@
                     <div class="row">
                    
                             @{  
-                                System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+                                converter = new System.Drawing.ImageConverter();
                                 var imagePeople = (byte[])converter.ConvertTo(Resources.resources.people, typeof(byte[]));
                                 string base64StringPeople = Convert.ToBase64String(imagePeople);
                             }
@@ -115,3 +127,15 @@
         </div>
     </div>
 </div>  
+<script type="text/javascript">
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".game-bought").click(function (e) {
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal({ backdrop: false });
+            });
+        });
+    })
+</script>
