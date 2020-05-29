@@ -77,7 +77,7 @@ namespace GameStoreAppCF.Models
                     Max_Players = 10,
                     Quantity = 5,
                     Price = 990.99,
-                    Image = (byte[])imageConverter.ConvertTo(GameStoreAppCF.Properties.resources.Bang, typeof(byte[]))
+                    //Image = (byte[])imageConverter.ConvertTo(.resources.Bang, typeof(byte[]))
             };
                 var game2 = new Game
                 {
@@ -94,7 +94,7 @@ namespace GameStoreAppCF.Models
                     Max_Players = 10,
                     Quantity = 10,
                     Price = 1990.99,
-                    Image = (byte[])imageConverter.ConvertTo(GameStoreAppCF.Properties.resources.Munchkin, typeof(byte[]))
+                    //Image = (byte[])imageConverter.ConvertTo(GameStoreAppCF.Properties.resources.Munchkin, typeof(byte[]))
                 };
                 order1.Client = clientIvan;
                 order1.Game.Add(game1);

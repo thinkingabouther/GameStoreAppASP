@@ -6,9 +6,9 @@
 }
 else
 {
-    using (Html.BeginForm("GameBought", "Home"))
+    using (Html.BeginForm("GameBoughtModal", "GameBought", FormMethod.Post, new { id = "game-bought" }))
     {
-       <div class="row">
+        <div class="row">
             @foreach (var game in Model)
             {
                 <div class="col-lg-4 col-md-6 mb-4 game-container">
@@ -16,8 +16,8 @@ else
                         @{
                             if (game.Image != null)
                             {
-                                string base64String = Convert.ToBase64String(game.Image);
-                                <img src="@String.Format("data:image/png;base64,{0}", base64String)" style="width: 100%; height: auto" />
+                                string base64StringImage = Convert.ToBase64String(game.Image);
+                                <img src="@String.Format("data:image/png;base64,{0}", base64StringImage)" style="width: 100%; height: auto" />
                             }
                         }
                         <div class="card-body" style="position: relative">
@@ -25,10 +25,16 @@ else
                                 @Html.ActionLink(game.Name, "OpenGameDetails", new { id = game.ID })
                             </h4>
                             <div>
-                                <button class="btn btn-primary" name="button-@game.ID">
-                                    <img src="~/Resources/cart.png" width="25" style="margin-top: -4px" />
+                                <a href="@Url.Action("GameBoughtModal", "GameBought", new { gameID = game.ID})" class="btn btn-primary game-bought">
+                                    @{
+                                        System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+                                        var image = (byte[])converter.ConvertTo(Resources.resources.cart, typeof(byte[]));
+                                        string base64StringCart = Convert.ToBase64String(image);
+
+                                        <img src="@String.Format("data:image/png;base64,{0}", base64StringCart)" width="25" style="margin-top: -4px" />
+                                    }
                                     @game.Price ₽
-                                </button>
+                                </a>
                             </div>
                             <hr />
                             <p class="card-text">@game.Description</p>
@@ -43,22 +49,41 @@ else
                             <div class="card-footer">
                                 <div class="container">
                                     <div class="row">
-                                        <div title="Количество игроков" class="col-md-6" style="text-align: center">
-                                            <img src="@Url.Content("~/Content/images/people.png")" width="20" height="20" />
-                                            <Label style="font-size:15px;">@game.Min_Players-@game.Max_Players</Label>
-                                        </div>
-                                        <div title="Длительность игры" class="col-md-6" style="text-align: center">
-                                            <img src="@Url.Content("~/Content/images/clocks.png")" width="20" height="20" />
-                                            <Label style="font-size:15px;">@game.Min_Duration-@game.Max_Duration</Label>
-                                        </div>
+                                        @{
+                                            var imagePeople = (byte[])converter.ConvertTo(Resources.resources.people, typeof(byte[]));
+                                            string base64StringPeople = Convert.ToBase64String(imagePeople);
+                                            <div title="Количество игроков" class="col-md-6" style="text-align: center">
+                                                <img src="@String.Format("data:image/png;base64,{0}", base64StringPeople)" width="20" height="20" />
+                                                <Label style="font-size:15px;">@game.Min_Players-@game.Max_Players</Label>
+                                            </div>
+                                            var imageDuration = (byte[])converter.ConvertTo(Resources.resources.clocks, typeof(byte[]));
+                                            string base64StringDuration = Convert.ToBase64String(imageDuration);
+                                            <div title="Длительность игры" class="col-md-6" style="text-align: center">
+                                                <img src="@String.Format("data:image/png;base64,{0}", base64StringDuration)" width="20" height="20" />
+                                                <Label style="font-size:15px;">@game.Min_Duration-@game.Max_Duration</Label>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                            }
-                            
+            }
+
         </div>
-                                }
-                            }           
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".game-bought").click(function (e) {
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal({ backdrop: false });
+            });
+        });
+    })
+</script>
+

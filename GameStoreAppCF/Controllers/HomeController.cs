@@ -57,18 +57,6 @@ namespace GameStoreAppCF.Controllers
             return PartialView(games);
         }
 
-        public ActionResult GameBought()
-        {
-            int id = int.Parse(Request.Params
-                        .Cast<string>()
-                        .Where(p => p.StartsWith("button-"))
-                        .Select(p => p.Substring("button-".Length))
-                        .First());
-            Cart cart = (Cart)Session["Cart"] != null? (Cart)Session["Cart"] : new Cart();
-            cart.Add(db.Game.Find(id).Name);
-            Session["Cart"] = cart;
-            return RedirectToAction("Index");
-        }
         public ActionResult OpenGameDetails(int? id)
         {
             if (id == null)
@@ -81,6 +69,15 @@ namespace GameStoreAppCF.Controllers
                 return HttpNotFound();
             }
             return View("~\\Views\\SingleGames\\Index.cshtml", game);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

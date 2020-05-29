@@ -9,7 +9,6 @@
 </head>
 <h2>Отчёт по продажам</h2>
 <hr />
-<h4>Даты для формирования отчёта</h4>
 @using (Ajax.BeginForm("Report", new AjaxOptions { UpdateTargetId = "report", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
 {
     <div class="container">
@@ -36,7 +35,6 @@
         </div>
     </div>
 }
-<hr />
 <div id="report">
     @Html.Partial("Report")
 </div>

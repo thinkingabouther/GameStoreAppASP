@@ -37,5 +37,14 @@ namespace GameStoreAppCF.Controllers
             }
             return View("~\\Views\\SingleGames\\Index.cshtml", game);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

@@ -1,0 +1,18 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <h4>Добавление в корзину</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <h5>Товар добавлен в корзину. Закройте окно и продолжите покупки или перейдите к оформлению заказа.</h5>
+            @using (Html.BeginForm("Index", "OrderConfirmation", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-secondary mr-2" data-dismiss="modal" area-hidden="true">Продолжить покупки</button>
+                        <input type="submit" value="Оформить заказ" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+    </div>
+</div>

@@ -10,6 +10,7 @@ namespace GameStoreAppCF.Controllers
 {
     public class ReportsController : Controller
     {
+        GameStoreDB db = new GameStoreDB();
         // GET: Reports
         public ActionResult Index()
         {
@@ -20,8 +21,17 @@ namespace GameStoreAppCF.Controllers
         {
             DateTime _dateFrom = DateTime.Parse(dateFrom);
             DateTime _dateTo = DateTime.Parse(dateTo);
-            var games = ReportManager.PrepareGamesToReport(_dateFrom, _dateTo);
+            var games = ReportManager.PrepareGamesToReport(db, _dateFrom, _dateTo);
             return PartialView(games);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

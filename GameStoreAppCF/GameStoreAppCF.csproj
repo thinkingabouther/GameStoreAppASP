@@ -154,6 +154,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\CreateReviewController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
+    <Compile Include="Controllers\GameBoughtController.cs" />
     <Compile Include="Controllers\GamesCatalogController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
@@ -322,6 +323,7 @@
     <Content Include="Views\Reports\Report.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\OrderConfirmation\Index.cshtml" />
+    <Content Include="Views\GameBought\GameBoughtModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,9 +349,10 @@
       <DependentUpon>202005251941097_blablabla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
