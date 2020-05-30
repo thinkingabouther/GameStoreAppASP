@@ -253,6 +253,9 @@
     <None Include="Content\images\people.png" />
     <None Include="Resources\author.png" />
     <None Include="Resources\cart.png" />
+    <None Include="Resources\Carousel1.png" />
+    <None Include="Resources\Carousel2.png" />
+    <None Include="Resources\Carousel3.png" />
     <Content Include="Resources\clocks.png" />
     <Content Include="Resources\manufacturer.png" />
     <Content Include="Resources\people.png" />

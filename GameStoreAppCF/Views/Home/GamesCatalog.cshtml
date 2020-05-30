@@ -17,7 +17,10 @@ else
                             if (game.Image != null)
                             {
                                 string base64StringImage = Convert.ToBase64String(game.Image);
-                                <img src="@String.Format("data:image/png;base64,{0}", base64StringImage)" style="width: 100%; height: auto" />
+                                <a href="@Url.Action("OpenGameDetails", new { id = game.ID})">
+
+                                    <img src="@String.Format("data:image/png;base64,{0}", base64StringImage)" style="width: 100%; height: auto" />
+                                </a>
                             }
                         }
                         <div class="card-body" style="position: relative">

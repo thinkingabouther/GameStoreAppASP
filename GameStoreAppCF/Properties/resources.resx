@@ -124,6 +124,15 @@
   <data name="Bang" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bang.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Carousel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Carousel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carousel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Carousel2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carousel3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Carousel3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
