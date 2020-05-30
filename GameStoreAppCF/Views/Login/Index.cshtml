@@ -11,11 +11,11 @@
                 <div class="form-group">
                     @{ if ((GameStoreAppCF.Models.LoginVerifier.Role)TempData["Role"] == GameStoreAppCF.Models.LoginVerifier.Role.Admin)
                         {
-                            <label>Введите пароль для пользователя "Администатор"</label>
+                            <label>Введите пароль для пользователя "Администатор" (Пароль: 1234)</label>
                         }
                         else
                         {
-                            <label>Введите пароль для пользователя "Владелец"</label>
+                            <label>Введите пароль для пользователя "Владелец" (Пароль: 12345)</label>
                         }
                         TempData.Keep("Role");
                     }

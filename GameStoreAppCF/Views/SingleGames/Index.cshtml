@@ -37,57 +37,73 @@
                     <div class="row">
                         <Label title="@Model.Genre.Description"
                                style="font-size:20px;">@Model.Genre.Name</Label>
-                    </div>
-                    <div class="row">
-                        <Label title="@Model.Type.Description"
-                               style="font-size:20px;">@Model.Type.Name</Label>
                         </div>
-                    <hr />
-                    @{ 
-                    <div class="row">
-                   
-                            @{  
-                                converter = new System.Drawing.ImageConverter();
-                                var imagePeople = (byte[])converter.ConvertTo(Resources.resources.people, typeof(byte[]));
-                                string base64StringPeople = Convert.ToBase64String(imagePeople);
-                            }
-                            <div class="col-md-6" style="text-align: center">
-                                <img src="@String.Format("data:image/png;base64,{0}", base64StringPeople)" width="20" height="20" />
-                                <Label style="font-size:15px;">@Model.Min_Players-@Model.Max_Players</Label>
+                        <div class="row">
+                            <Label title="@Model.Type.Description"
+                                   style="font-size:20px;">@Model.Type.Name</Label>
                             </div>
-                            <div class="col-md-6" style="text-align: center">
-                                @{ 
-                                    var imageClocks = (byte[])converter.ConvertTo(Resources.resources.clocks, typeof(byte[]));
-                                    string base64StringClocks = Convert.ToBase64String(imageClocks);
-                                }
-                                <img src="@String.Format("data:image/png;base64,{0}", base64StringClocks)" width="20" height="20" />
-                                <Label style="font-size:15px;">@Model.Min_Duration-@Model.Max_Duration</Label>
-                            </div>
-                        </div>
+                            <hr />
+                            @{
+                                <div class="row">
 
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-6" style="text-align: center">
-                            @{
-                                var imageManufacturer = (byte[])converter.ConvertTo(Resources.resources.manufacturer, typeof(byte[]));
-                                string base64StringManufacturer = Convert.ToBase64String(imageManufacturer);
+                                    @{
+                                        converter = new System.Drawing.ImageConverter();
+                                        var imagePeople = (byte[])converter.ConvertTo(Resources.resources.people, typeof(byte[]));
+                                        string base64StringPeople = Convert.ToBase64String(imagePeople);
+                                    }
+                                    <div class="col-md-6" style="text-align: center">
+                                        <img src="@String.Format("data:image/png;base64,{0}", base64StringPeople)" width="20" height="20" />
+                                        <Label style="font-size:15px;">@Model.Min_Players-@Model.Max_Players</Label>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: center">
+                                        @{
+                                            var imageClocks = (byte[])converter.ConvertTo(Resources.resources.clocks, typeof(byte[]));
+                                            string base64StringClocks = Convert.ToBase64String(imageClocks);
+                                        }
+                                        <img src="@String.Format("data:image/png;base64,{0}", base64StringClocks)" width="20" height="20" />
+                                        <Label style="font-size:15px;">@Model.Min_Duration-@Model.Max_Duration</Label>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: center">
+                                        @{
+                                            var imageManufacturer = (byte[])converter.ConvertTo(Resources.resources.manufacturer, typeof(byte[]));
+                                            string base64StringManufacturer = Convert.ToBase64String(imageManufacturer);
+                                        }
+                                        <img src="@String.Format("data:image/png;base64,{0}", base64StringManufacturer)" width="20" height="20" />
+                                        <Label title="Адрес: @Model.Manufacturer.Adress"
+                                               style="font-size:15px;">@Model.Manufacturer.Name</Label>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: center">
+                                            @{
+                                                var imageAuthor = (byte[])converter.ConvertTo(Resources.resources.author, typeof(byte[]));
+                                                string base64StringAuthor = Convert.ToBase64String(imageAuthor);
+                                            }
+                                            <img src="@String.Format("data:image/png;base64,{0}", base64StringAuthor)" width="20" height="20" />
+                                            <Label title="Адрес: @Model.Author.Adress"
+                                                   style="font-size:15px;">@Model.Author.Name</Label>
+                                            </div>
+                                        </div>
                             }
-                            <img src="@String.Format("data:image/png;base64,{0}", base64StringManufacturer)" width="20" height="20" />
-                            <Label title="Адрес: @Model.Manufacturer.Adress"
-                                   style="font-size:15px;">@Model.Manufacturer.Name</Label>
-                            </div>
-                        <div class="col-md-6" style="text-align: center">
-                            @{
-                                var imageAuthor = (byte[])converter.ConvertTo(Resources.resources.author, typeof(byte[]));
-                                string base64StringAuthor = Convert.ToBase64String(imageAuthor);
-                            }
-                            <img src="@String.Format("data:image/png;base64,{0}", base64StringAuthor)" width="20" height="20" />
-                            <Label title="Адрес: @Model.Author.Adress"
-                                   style="font-size:15px;">@Model.Author.Name</Label>
-                            </div>
+                            <hr />
+                            <h5>Сложность:</h5>
+                            <h6 class="text-muted">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= Model.Difficulty)
+                                    {
+                                        <span>&#9733</span>
+                                    }
+                                    else
+                                    {
+                                        <span>&#9734</span>
+                                    }
+                                }
+                            </h6>
+                            <hr />
                         </div>
-                        }
-                </div>
             </div>
         </div>
         <!-- /.card -->
